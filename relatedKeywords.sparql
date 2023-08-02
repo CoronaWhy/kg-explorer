@@ -1,0 +1,21 @@
+#+ endpoint: https://triplestore.coronawhy.org/vr/sparql
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <https://schema.org/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX citation: <https://dataverse.org/schema/citation/>
+PREFIX ore: <http://www.openarchives.org/ore/1.0/terms/>
+PREFIX id: <https://doi.org/>
+SELECT DISTINCT ?keyword ?keywordID ?relatedkeyword
+WHERE {
+ ?id schema:distribution ?url;
+        dcterms:title ?title;
+        citation:dsDescription ?description;
+        citation:keyword ?keywordID.
+ ?description citation:dsDescriptionValue ?summary.
+ filter contains(?keyword,"vr headsets")
+ filter contains(?relatedkeyword, "music")
+ ?keywordID citation:keywordValue ?keyword.
+ ?z citation:keywordValue ?relatedkeyword 
+}
