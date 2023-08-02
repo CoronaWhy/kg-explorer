@@ -1,2 +1,2 @@
 # kg-explorer
-Knowledge Graph explorer
+CoronaWhy Knowledge Graph Explorer based on SPARQL queries. 
